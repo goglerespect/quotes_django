@@ -1,0 +1,16 @@
+{% extends "quotes/base.html" %}
+{% block content %}
+  <h1>Quotes</h1>
+  {% for q in quotes %}
+    <div>
+      <p>{{ q.quote }}</p>
+      <p>— <a href="{% url 'quotes:author_detail' q.author.id %}">{{ q.author.fullname }}</a></p>
+      {% if q.tags %}
+        <p>Tags: {{ q.tags }}</p>
+      {% endif %}
+    </div>
+    <hr>
+  {% empty %}
+    <p>No quotes yet.</p>
+  {% endfor %}
+{% endblock %}
